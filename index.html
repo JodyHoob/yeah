@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiggling Circle</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="wiggleCanvas" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('wiggleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let x = canvas.width / 2;
+        let y = canvas.height / 2;
+        let radius = 50;
+        let angle = 0;
+
+        function drawCircle() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+            ctx.beginPath();
+            ctx.arc(x + Math.sin(angle) * 10, y + Math.cos(angle) * 10, radius, 0, Math.PI * 2); // Wiggle the circle
+            ctx.fillStyle = '#3498db';
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function animate() {
+            angle += 0.1; // Adjust the speed of the wiggle here
+            drawCircle();
+            requestAnimationFrame(animate); // Continuously update the canvas
+        }
+
+        animate(); // Start the animation
+    </script>
+</body>
+</html>
